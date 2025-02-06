@@ -3,26 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SupaFastWeb | Custom Websites in 1-3 Days</title>
-    <meta name="description" content="Get your custom website live in just 1-3 days. Professional web design service starting from $299.99">
+    <title>Custom Website Design in 1-3 Days | High-Converting Business Websites</title>
+    <meta name="description" content="Get a high-converting custom website in just 1-3 days. Professional web design service that turns visitors into clients. Starting at $299.99 - perfect for growing businesses.">
+    
+    <!-- Additional SEO meta tags -->
+    <meta name="keywords" content="custom website design, fast web design, business website, high converting website, professional web design, 3 day website, quick website development">
+    <meta name="author" content="SupaFastWeb">
+    
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="Custom Website Design in 1-3 Days | High-Converting Business Websites">
+    <meta property="og:description" content="Get a high-converting custom website in just 1-3 days. Professional web design service that turns visitors into clients. Starting at $299.99">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://supafastweb.site">
+    
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://supafastweb.site" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="js/currency.js" defer></script>
+    <script src="js/slots-indicator.js" defer></script>
+    <script src="js/modal.js" defer></script>
 </head>
 <body>
     <header>
-        <div class="logo">⚡ Supafastweb.site</div>
+        <nav aria-label="Main navigation">
+            <div class="logo">⚡ Supafastweb.site</div>
+        </nav>
     </header>
+
+    <div class="slots-indicator" id="slotsIndicator">
+        <div class="container">
+            <div class="slots-content">
+                <div class="slots-left">
+                    <span class="slots-icon">📅</span>
+                    <span class="slots-text">Only 4 slots available this week - Someone just booked a slot!</span>
+                </div>
+                <div class="slots-right">
+                    <button class="slots-cta" onclick="document.getElementById('openModal').click()">
+                        Get Started Now
+                    </button>
+                    <button class="slots-close" aria-label="Close notification">×</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main class="hero">
         <div class="container">
-            <h1>Get a High-Converting Website <span>That Brings You Clients</span></h1>
-            <p>Custom-built websites designed to turn visitors into paying customers. Ready in 1-3 days.</p>
+            <h1>Get Your High-Converting Website in 1-3 Days</h1>
+            <p>Get a high-converting, custom-built website designed to grow your business and bring you more customers. Ready in just 1-3 days.</p>
 
             <div class="price-card">
                 <div class="price-badge">Limited Time Offer</div>
-                <h2>Start Today for Only</h2>
-                <div class="price">$299.99</div>
+                <h2>Get started from only</h2>
+                <div class="price" id="priceDisplay" data-base-price="299.99" data-base-currency="USD">
+                    <span class="currency-symbol">$</span>
+                    <span class="price-amount">299.99</span>
+                </div>
                 <p class="price-subtitle">One-time payment, no hidden fees</p>
                 <ul class="features">
                     <li>Conversion-Optimized Design</li>
@@ -34,7 +71,7 @@
                 </ul>
             </div>
 
-            <button class="cta-button" id="openModal">Get Your High-Converting Website</button>
+            <button class="cta-button" id="openModal" aria-label="Start your website project">Get Your High-Converting Website Today</button>
             
             <div class="trust-badges">
                 <div class="badge">
@@ -61,5 +98,84 @@
             </div>
         </div>
     </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">Supafastweb.site</div>
+                <p class="footer-tagline">Professional website design service that delivers results in 1-3 days.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul>
+                    <li>Custom Website Design</li>
+                    <li>Lead Generation Pages</li>
+                    <li>Business Websites</li>
+                    <li>Landing Pages</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>📧 hello@supafastweb.site</li>
+                    <li>⚡ Quick Response Time</li>
+                    <li>🌐 Available Worldwide</li>
+                </ul>
+            </div>
+
+            <div class="footer-section newsletter">
+                <h3>Stay Updated</h3>
+                <p>Get web design tips and special offers straight to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" aria-label="Email for newsletter">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Supafastweb.site All rights reserved. Professional Website Design Services.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="leadModal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close form">×</button>
+            <h2>Let's Create Your Website</h2>
+            <p class="modal-subtitle">Tell us about your project and we'll get back to you within 10 Minutes.</p>
+            
+            <form id="leadForm" class="lead-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required placeholder="Your Email">
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="website" name="website" placeholder="Current Website (if any)">
+                </div>
+                
+                <div class="form-group">
+                    <select id="budget" name="budget" required>
+                        <option value="" disabled selected>Select Your Budget Range</option>
+                        <option value="299-499">$299 - $499</option>
+                        <option value="500-999">$500 - $999</option>
+                        <option value="1000+">$1000+</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="message" name="message" required placeholder="Tell us about your project (goals, timeline, specific features needed)"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Get Started Now</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html> 
