@@ -1,15 +1,15 @@
 :root {
-    --primary: #10b981;          /* Main emerald green */
-    --primary-dark: #059669;     /* Darker green for depth */
-    --primary-light: #34d399;    /* Lighter green for accents */
-    --accent: #14b8a6;          /* Teal green for secondary elements */
-    --accent-light: #2dd4bf;    /* Light teal for hover states */
+    --primary: #8b5cf6;          /* Main purple */
+    --primary-dark: #7c3aed;     /* Darker purple */
+    --primary-light: #a78bfa;    /* Lighter purple */
+    --accent: #6366f1;          /* Indigo for secondary elements */
+    --accent-light: #818cf8;    /* Light indigo for hover states */
     --background: #0f172a;      /* Dark blue background */
     --text: #f8fafc;
     --text-secondary: #94a3b8;
     --card-bg: rgba(30, 41, 59, 0.9);
-    --gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-    --gradient-accent: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    --gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    --gradient-accent: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
 }
 
 * {
@@ -22,8 +22,8 @@ body {
     font-family: 'Inter', sans-serif;
     background: var(--background);
     background-image: 
-        radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(20, 184, 166, 0.15) 0%, transparent 25%);
+        radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 25%);
     color: var(--text);
     line-height: 1.6;
 }
@@ -42,6 +42,13 @@ header {
     z-index: 10;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
@@ -58,12 +65,6 @@ header {
     text-align: center;
     padding: 4rem 0;
     position: relative;
-}
-
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 h1 {
@@ -103,6 +104,8 @@ h1 {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     position: relative;
+    animation: none;
+    z-index: 1;
 }
 
 .price-badge {
@@ -209,21 +212,72 @@ h1 {
     background-size: 200% auto;
     color: var(--text);
     border: none;
-    padding: 1.25rem 3rem;
+    padding: 1.5rem 4rem;
     border-radius: 100px;
     font-size: 1.25rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3),
+                0 0 0 2px rgba(139, 92, 246, 0.1);
     margin-bottom: 4rem;
-    animation: gradient 8s ease infinite;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.cta-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    z-index: -1;
 }
 
 .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.3);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4),
+                0 0 0 3px rgba(139, 92, 246, 0.2);
     background-position: right center;
+}
+
+.cta-button:hover:before {
+    transform: translateX(100%);
+}
+
+.cta-button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3),
+                0 0 0 2px rgba(139, 92, 246, 0.1);
+}
+
+@keyframes ctaPulse {
+    0% {
+        box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3),
+                    0 0 0 2px rgba(139, 92, 246, 0.1);
+    }
+    50% {
+        box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4),
+                    0 0 0 4px rgba(139, 92, 246, 0.2);
+    }
+    100% {
+        box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3),
+                    0 0 0 2px rgba(139, 92, 246, 0.1);
+    }
+}
+
+.cta-button {
+    animation: ctaPulse 3s infinite ease-in-out;
 }
 
 .trust-badges {
@@ -243,6 +297,18 @@ h1 {
     border-radius: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge::after {
+    display: none;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .badge span:first-child {
@@ -284,8 +350,7 @@ h1 {
 }
 
 .price-card {
-    animation: fadeInUp 0.6s ease-out forwards;
-    animation-delay: 0.2s;
+    animation: none;
 }
 
 .trust-badges {
@@ -529,20 +594,25 @@ footer {
     animation: priceSlideIn 0.5s ease-out forwards;
 }
 
-/* Slots indicator styles */
+/* Update slots indicator styles */
 .slots-indicator {
     position: fixed;
     top: -100px;
     left: 0;
     right: 0;
     width: 100%;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.98),
+        rgba(30, 41, 59, 0.98)
+    );
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
-    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     opacity: 0;
     transform: translateY(-100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .slots-indicator.show {
@@ -555,11 +625,11 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: 1rem 0;
     opacity: 0;
     transform: translateY(-10px);
-    transition: all 0.8s ease;
-    transition-delay: 0.4s;
+    transition: all 0.6s ease;
+    transition-delay: 0.2s;
 }
 
 .slots-indicator.show .slots-content {
@@ -570,17 +640,23 @@ footer {
 .slots-left {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
 }
 
 .slots-icon {
-    font-size: 1.25rem;
-    animation: pulse 2s ease-in-out infinite;
+    font-size: 1.5rem;
     color: var(--primary);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 .slots-text {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text);
     font-weight: 500;
 }
@@ -588,58 +664,36 @@ footer {
 .slots-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
 }
 
 .slots-cta {
-    background-image: linear-gradient(
-        270deg,
-        var(--primary) 0%,
-        var(--primary-light) 50%,
-        var(--accent) 75%,
-        var(--primary) 100%
-    );
-    background-size: 200% auto;
+    background: var(--gradient);
     border: none;
     border-radius: 100px;
     color: var(--text);
     font-weight: 600;
-    padding: 0.5rem 1.25rem;
-    font-size: 0.875rem;
+    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    animation: gradient 8s ease infinite;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
 }
 
 .slots-cta:hover {
-    transform: translateY(-1px);
-    background-position: right center;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(139, 92, 246, 0.3);
 }
 
+/* Remove slots-close button styles */
 .slots-close {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.25rem;
-    line-height: 1;
-    padding: 0.25rem;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+    display: none;
 }
 
-.slots-close:hover {
-    opacity: 1;
-    color: var(--text);
-}
-
-/* Mobile responsive styles */
 @media (max-width: 768px) {
     .slots-content {
         flex-direction: column;
         gap: 0.75rem;
-        padding: 0.75rem 0;
+        padding: 1rem 0;
         text-align: center;
     }
 
@@ -647,16 +701,13 @@ footer {
         justify-content: center;
     }
 
-    .slots-right {
-        justify-content: center;
-    }
-
     .slots-text {
         font-size: 0.875rem;
     }
 
-    header {
-        padding-top: calc(2rem + 80px);
+    .slots-cta {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
     }
 }
 
@@ -802,4 +853,26 @@ footer {
     .modal h2 {
         font-size: 1.75rem;
     }
+}
+
+/* Add specific styles for the header CTA */
+.header-cta {
+    /* Remove these styles */
+    padding: 1.25rem 3rem;
+    font-size: 1.125rem;
+    margin-bottom: 0;
+}
+
+/* Remove the media query for header-cta */
+@media (max-width: 768px) {
+    .header-cta {
+        /* Remove these styles */
+        width: auto;
+        padding: 0.875rem 1.75rem;
+    }
+}
+
+/* Update main content padding to account for fixed header */
+main {
+    padding-top: 0;
 } 
