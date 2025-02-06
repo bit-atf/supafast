@@ -148,33 +148,34 @@
             
             <form id="leadForm" class="lead-form">
                 <div class="form-group">
-                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                    <input type="text" name="name" placeholder="Your Name" required>
                 </div>
-                
                 <div class="form-group">
-                    <input type="email" id="email" name="email" required placeholder="Your Email">
+                    <input type="email" name="email" placeholder="Your Email" required>
                 </div>
-                
                 <div class="form-group">
-                    <input type="text" id="website" name="website" placeholder="Current Website (if any)">
+                    <input type="tel" name="phone" placeholder="Your Phone Number" required 
+                           pattern="[0-9+\s-()]{7,}"
+                           title="Please enter a valid phone number">
                 </div>
-                
                 <div class="form-group">
-                    <select id="budget" name="budget" required>
-                        <option value="" disabled selected>Select Your Budget Range</option>
-                        <option value="299-499">$299 - $499</option>
-                        <option value="500-999">$500 - $999</option>
-                        <option value="1000+">$1000+</option>
+                    <select name="service" required>
+                        <option value="">Select Service</option>
+                        <option value="Custom Website Design">Custom Website Design</option>
+                        <option value="Lead Generation Pages">Lead Generation Pages</option>
+                        <option value="Business Websites">Business Websites</option>
+                        <option value="Landing Pages">Landing Pages</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
-                    <textarea id="message" name="message" required placeholder="Tell us about your project (goals, timeline, specific features needed)"></textarea>
+                    <textarea name="message" placeholder="Tell us about your project" required></textarea>
                 </div>
-                
-                <button type="submit" class="submit-button">Get Started Now</button>
+                <button type="submit" class="submit-button">Get Started</button>
             </form>
         </div>
     </div>
+
+    <!-- Add EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </body>
 </html> 
